@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 import Quiz from './components/Quiz';
+import QuizEnd from './components/QuizEnd';
 import { useState } from 'react';
 
 function App() {
@@ -44,6 +45,11 @@ function App() {
 
           </Route>
           <Route exact path='/' element={<Home />} >
+
+          </Route>
+
+          
+          <Route exact path='/quizend/:score/:flower' element={<QuizEnd />} >
 
           </Route>
         </Routes>
