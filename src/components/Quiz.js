@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Spinner from 'react-bootstrap/Spinner';
-import dataService from "../data_access_layer/local_temporarily_storage";
+import apiAccess from './communication/APIaccess';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const Quiz = () => {
 
     useEffect(() => {
         if(!quiz) {
-            let x = dataService.getQuiz(id);
+            let x = apiAccess.getQuiz(id);
             setQuiz(x);
             console.log(x);
         }        
