@@ -1,4 +1,4 @@
-let backendAddress = 'https://shyambhavi3-imagequiz-api.herokuapp.com';
+let backendAddress = 'http://localhost:4002';
 
 let apiAccess ={
     addCustomer:(name, email, password)=>{
@@ -42,7 +42,7 @@ getQuiz: (name) => {
     return fetch(`${backendAddress}/quiz/${name}`)
     .then(x => x.json())
     .then(x => {
-        console.log(x);
+        
         return x.result;
     });
 }

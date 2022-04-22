@@ -18,9 +18,18 @@ const Quiz = () => {
 
     useEffect(() => {
         if(!quiz) {
-            let x = apiAccess.getQuiz(id);
-            setQuiz(x);
-            console.log(x);
+            apiAccess.getQuiz(id).then(x=>{
+                console.log(x);
+                console.log(x.questions[currentQuestionNumber].choices.split(','));
+                x.questions[currentQuestionNumber].choices.split('\n').map(x =>
+                    console.log(x))
+                setQuiz(x);
+            
+
+            })
+
+            
+            
         }        
     });
 
@@ -59,7 +68,8 @@ const Quiz = () => {
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup>
-                                {quiz.questions[currentQuestionNumber].choices.map(x =>
+                                {
+                                    quiz.questions[currentQuestionNumber].choices.split(',').map(x =>
                                     <button onClick={() => handleClick(quiz.questions[currentQuestionNumber].answer,x)}>{x}</button>
                                 )}
                             </ListGroup>
