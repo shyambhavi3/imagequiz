@@ -12,7 +12,7 @@ const Menu = (props) => {
             <Nav className="me-auto">
               {
               props.customer ? 
-              <Navbar.Text>
+              <Navbar.Text id="text">
                 Signed in as {props.customer}
               </Navbar.Text>                
               :

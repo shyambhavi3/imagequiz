@@ -14,7 +14,7 @@ import QuizEnd from './components/QuizEnd';
 import { useState } from 'react';
 
 function App() {
-  const [customer, setCustomer] = useState(undefined);
+  const [customer, setCustomer] = useState('');
 
   let customerLoggedInHandler = (customerEmail) => {
     setCustomer(customerEmail);
@@ -41,7 +41,7 @@ function App() {
           <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
 
           </Route>
-          <Route exact path='/quiz/:id' element={<Quiz />} >
+          <Route exact path='/quiz/:id' element={<Quiz  customer={customer}/>} >
 
           </Route>
           <Route exact path='/' element={<Home />} >
@@ -49,7 +49,7 @@ function App() {
           </Route>
 
           
-          <Route exact path='/quizend/:score/:flower' element={<QuizEnd />} >
+          <Route exact path='/quizend/:score/:flower/' element={<QuizEnd />} >
 
           </Route>
         </Routes>

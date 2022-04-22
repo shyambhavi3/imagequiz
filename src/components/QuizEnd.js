@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-const QuizEnd = () => {
+const QuizEnd = (props) => {
 
 
     const { score, flower } = useParams();
     const navigate = useNavigate();
+    
+   
 
    function handleClick(flower){
        navigate('/quiz/'+flower)

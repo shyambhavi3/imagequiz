@@ -9,13 +9,13 @@ import apiAccess from './communication/APIaccess';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-const Quiz = () => {
+const Quiz = (props) => {
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
     const [quiz, setQuiz] = useState(undefined);
     const { id } = useParams();
     const [quizScore, setScore] =useState(0);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         if(!quiz) {
             apiAccess.getQuiz(id).then(x=>{
@@ -35,9 +35,10 @@ const Quiz = () => {
 
     let handleClick= (answer,x)=>{
         console.log(answer+x)
-        if(answer===x){
+        if(answer.trim()===x.trim()){
             setScore(quizScore+1);
         }
+        
         console.log(quizScore);
         if(currentQuestionNumber<5){
             setCurrentQuestionNumber(currentQuestionNumber+1);
@@ -45,7 +46,14 @@ const Quiz = () => {
         }
 
         else{
-            navigate('/quizend/' + quizScore+'/'+id);
+            const customerEmail = props.customer
+            const quizName = id;
+
+            apiAccess.addScore(customerEmail,quizName,quizScore).then(x=>{
+                navigate('/quizend/' + quizScore+'/'+id);
+
+            })
+            
         }
         
 
