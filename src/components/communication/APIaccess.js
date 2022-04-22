@@ -1,4 +1,4 @@
-let backendAddress = 'http://localhost:4002';
+let backendAddress = 'https://shyambhavi3-imagequiz-api.herokuapp.com';
 
 let apiAccess ={
     addCustomer:(name, email, password)=>{
