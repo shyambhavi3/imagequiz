@@ -1,8 +1,21 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import apiAccess from './communication/APIaccess';
 
 const Menu = (props) => {
+
+  let logout = () => {
+    apiAccess.logout()
+    .then(x=>{
+      props.customerLoggedOut();
+    })
+    .catch(e => {
+      console.log(e);
+    })
+   
+  }
+
     return (
         <Navbar bg="light" expand="lg">
         <Container>
@@ -11,10 +24,15 @@ const Menu = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               {
-              props.customer ? 
+              props.customer ?
+              <>
               <Navbar.Text id="text">
                 Signed in as {props.customer}
-              </Navbar.Text>                
+              </Navbar.Text>  
+              <Nav.Link href="#/" onClick ={logout}>Logout</Nav.Link>
+
+              </>
+                            
               :
               <>
               <Nav.Link href="#/register">Register</Nav.Link>
