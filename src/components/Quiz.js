@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Spinner from 'react-bootstrap/Spinner';
-import apiAccess from './communication/APIaccess';
+import apiAccess from '../communication/APIaccess';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 

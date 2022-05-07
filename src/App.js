@@ -1,5 +1,6 @@
 
-import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';import Container from 'react-bootstrap/Container';
+import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Home from './components/Home';
@@ -11,6 +12,8 @@ import Menu from './components/Menu';
 import Quiz from './components/Quiz';
 import QuizEnd from './components/QuizEnd';
 import { useState } from 'react';
+import FederatedLogin from './components/FederatedLogin';
+
 
 function App() {
   const [customer, setCustomer] = useState(localStorage.getItem('customer'));
@@ -36,7 +39,7 @@ function App() {
         </Row>
         <Row>
           <Col>
-            <Menu customer={customer} customerLoggedOut = {customerLoggedOutHandler}/>
+            <Menu customer={customer} customerLoggedOut={customerLoggedOutHandler} />
           </Col>
         </Row>
 
@@ -47,18 +50,23 @@ function App() {
           <Route exact path='/login/:from' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
 
           </Route>
-          
+
           <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
 
           </Route>
-          <Route exact path='/quiz/:id' element={<ProtectedRoute customer={customer}><Quiz customer={customer}/></ProtectedRoute>} >
+          <Route exact path='/quiz/:id' element={<ProtectedRoute customer={customer}><Quiz customer={customer} /></ProtectedRoute>} >
 
           </Route>
+
+          <Route path='/google/:username/:name' element={<FederatedLogin provider="google" customerLoggedIn={customerLoggedInHandler} />}>
+
+          </Route>
+
           <Route exact path='/' element={<Home />} >
 
           </Route>
 
-          
+
           <Route exact path='/quizend/:score/:flower/' element={<QuizEnd />} >
 
           </Route>
@@ -79,7 +87,7 @@ const ProtectedRoute = ({ customer, children }) => {
   if (customer) {
     return children;
   } else {
-    return <Navigate to={`/login/${id}` }/>;
+    return <Navigate to={`/login/${id}`} />;
   }
 }
 

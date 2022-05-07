@@ -2,7 +2,7 @@ import { useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import apiAccess from './communication/APIaccess';
+import apiAccess from '../communication/APIaccess';
 
 
 const Register = () => {

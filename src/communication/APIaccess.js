@@ -1,4 +1,5 @@
-let backendAddress = 'https://shyambhavi3-imagequiz-api.herokuapp.com';
+import configuration from '../configuration'
+let backendAddress = configuration.backendAddress;
 
 let apiAccess ={
     addCustomer:(name, email, password)=>{
@@ -90,6 +91,21 @@ getQuiz: (name) => {
     .then(x => x.json())
     .then(x => {
         
+        return x.result;
+    });
+},
+isLoggedIn: () => {
+    return fetch(`${backendAddress}/isloggedin`, {
+        method: 'Get',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Credentials": true
+        }
+     })
+    .then(x => x.json())
+    .then(x => {
+        console.log(x);
         return x.result;
     });
 }

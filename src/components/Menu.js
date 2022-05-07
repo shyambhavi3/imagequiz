@@ -1,9 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import apiAccess from './communication/APIaccess';
+import apiAccess from '../communication/APIaccess';
+import configuration from '../configuration'
 
 const Menu = (props) => {
+
+  let google=`${configuration.backendAddress}/auth/google`
 
   let logout = () => {
     apiAccess.logout()
@@ -37,6 +40,7 @@ const Menu = (props) => {
               <>
               <Nav.Link href="#/register">Register</Nav.Link>
               <Nav.Link href="#/login">Login</Nav.Link>
+              <Nav.Link href={google}>Sign in with Google</Nav.Link>
               </>         
             }              
               
